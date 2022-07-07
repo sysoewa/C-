@@ -1,103 +1,16 @@
-﻿// Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
+﻿Пользователь вводит с клавиатуры M чисел. Посчитайте, сколько чисел больше 0 ввёл пользователь.
 
-// int [] CreateRandomArray (int size){
-//     int [] array = new int [size];
-//     for (int i = 0; i < size; i++){
-//         array[i] = new Random().Next (100,1000);
-//     }
-//     return array;
-// }
-
-
-// void ShowArray(int[] array)
-// {
-//     Console.WriteLine();
-//     Console.Write("Исходный массив: [");
-//     for (int i = 0; i < array.Length - 1; i++)
-//     {
-//         Console.Write($"{array[i]}, ");
-//     }
-//     Console.Write($"{array[array.Length - 1]}]");
-//     Console.WriteLine();
-// }
-
-// void Numbers (int[] array)
-// {
-//     int count = 0;
-//     for (int i = 0; i < array.Length; i++)
-//     {
-//         if (array[i] % 2 == 0) count++;
-//     }
-
-//     Console.Write($"Количество четных элементов в массиве: {count}");
-// }
-
-// int[] AskUser()
-// {
-//     Console.Write("Введите размер массива: ");
-//     int size = Convert.ToInt32(Console.ReadLine());
-//     int[] array = CreateRandomArray(size);
-//     ShowArray(array);
-
-//     return array;
-// }
-
-// Numbers(AskUser());
-
-
-
-// Задайте одномерный массив, заполненный случайными числами. Найдите сумму элементов, стоящих на нечётных позициях.
-
-// int [] CreateRandomArray (int size) 
-// {
-//     int [] array = new int [size];
-//     for (int i=0; i < size; i++) 
-//     {
-//         array [i] = new Random().Next (0, 20);
-//     } 
-//     return array;
-// }
-
-
-// void ShowArray (int [] array) 
-// {
-//     for (int i = 0; i < array.Length; i++)
-//     {
-//         Console.Write (array [i] + " ");
-//     }
-// }
-
-// int [] MyArray = CreateRandomArray (6);
-// ShowArray (MyArray);
-
-
-// void Sum (int [] array) {
-//     int result = 0;
-//     for (int i = 1; i < array.Length; i = i + 2)
-//     {
-//         result = result + array [i];
-//     }
-//     Console.WriteLine("Сумма чисел, стоящих на нечётных позициях в массиве: " + result);
-// }
-
-// Sum (MyArray);
-
-
-
-// Задайте массив вещественных чисел. Найдите разницу между максимальным и минимальным элементов массива.
-
-int [] CreateRandomArray(int size)
+int[] CreateRandomArray(int size)
 {
-    int [] array = new int [size];
+    int[] array = new int[size];
     for (int i = 0; i < size; i++)
     {
-        array[i] = new Random().Next(0, 20);
+        array[i] = new Random().Next(-100, 100);
     }
     return array;
 }
 
-
-void ShowArray(int [] array)
+void ShowArray(int[] array)
 {
     for (int i = 0; i < array.Length; i++)
     {
@@ -105,40 +18,45 @@ void ShowArray(int [] array)
     }
 }
 
-int [] MyArray = CreateRandomArray(6);
+int[] MyArray = CreateRandomArray(6);
 ShowArray(MyArray);
 
-
-
-void DifMinMax(int [] array)
+int Checking (int[] array)
 {
-    int max = 0;
-    int min = array[0];
-    int result  = 0;
-    
-
-
-    for (int i = 1; i < array.Length; i++)
+    int count = 0;
+    for (int i = 0; i < array.Length; i++)
     {
-        if (max < array[i])
-        {
-            max = array[i];
-        }
-        
+        if (array[i] > 0) count += 1;
     }
-
-    for (int i = 1; i < array.Length; i++)
-    {
-        if (min > array[i])
-        {
-            min = array[i];
-        }
-    }
-    Console.WriteLine ("max number: " + max + "min number: " + min );
-    result = max - min;
-    Console.WriteLine("difference between min and max: " + result );
+    return count;
 }
 
-DifMinMax (MyArray);
+Checking(MyArray);
+
+Console.WriteLine($"Введено чисел больше 0: {Checking(MyArray)} ");
 
 
+
+Напишите программу, которая найдёт точку пересечения двух прямых, заданных уравнениями y = k1 * x + b1, y = k2 * x + b2; значения b1, k1, b2 и k2 задаются пользователем.
+
+
+Console.Write ("Введи значение k1 для первой прямой: ");
+int k1 = Convert.ToInt32(Console.ReadLine());
+Console.Write ("Введи значение k2 для второй прямой: ");
+int k2 = Convert.ToInt32(Console.ReadLine());
+Console.Write ("Введи значение b1 для первой прямой: ");
+int b1 = Convert.ToInt32(Console.ReadLine());
+Console.Write ("Введи значение b2 для второй прямой: ");
+int b2 = Convert.ToInt32(Console.ReadLine());
+
+if (k1 == k2 && b1 != b2)
+    Console.WriteLine("прямые параллельны");
+else
+        if (k1 == k2 && b1 == b2)
+    Console.WriteLine("прямые совпадают");
+     else
+        {
+            int x = (b2 - b1)/(k1 - k2);
+            int y = k1*x + b1;
+            Console.WriteLine($"Координаты точки пересечения прямых: x : {x} | y : {y}");
+        }
